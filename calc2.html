@@ -1,0 +1,332 @@
+ <!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>calc2</title>
+    <style>
+        @media (max-width:540px){
+            div.empty{display:none;}
+            div.vertical{display:block;}
+            div.horizontal{display:none;}
+        }
+        @media (max-width:360px){
+            div.empty{display: block;}
+            div.vertical{display: none;}
+            div.horizontal{display:none;}
+        }
+        @media (min-width:541px){ 
+            div.empty{display: none;}
+            div.vertical{display: none;}
+            div.horizontal{display: block;}
+        }
+        #display1{
+            background-color: rgb(255, 255, 255);
+            border-radius: 10px;
+
+            width: 100%;
+            height: 70px;
+            display: flex; 
+
+            justify-content: flex-end; 
+            align-items: center;
+            font-size: 24px;
+            font-weight: bold;
+            
+        }
+        #display2{
+            background-color: rgb(255, 255, 255);
+            border-radius: 10px;
+
+            width: 100%;
+            height: 70px;
+            display: flex; 
+
+            justify-content: flex-end; 
+            align-items: center;
+            font-size: 24px;
+            font-weight: bold;
+            
+        }
+        table{
+            margin:0;
+            padding-right:50px;
+            padding-left:50px;
+            padding-bottom: -10px;
+            padding-top: 20px;
+            border: 3px solid black;
+            background-color: rgb(204, 204, 204);
+        }
+        td{
+            padding:0;
+            margin:0;
+            border-radius: 10px;
+        }
+        button{ 
+            width: 70px;
+            height: 70px;
+            margin: 0;
+            display: block;
+            border-radius: 10px;
+
+            font-size: 24px;
+            font-weight: bold;
+            text-align: center;
+        }
+        button:hover{
+            color: rgb(233, 96, 96);
+            background-color: rgb(172, 56, 104);
+        }
+        .ButtonStyle1{
+            background-color: rgb(131, 131, 131);
+        }
+        .ButtonStyle2{
+            background-color: rgb(216, 216, 216);
+        }
+        .ButtonStyle3{
+            background-color: rgb(233, 192, 58);
+        }
+    </style>
+</head>
+<body>
+    <script>
+        let curValue = 0;
+        let operator ='';
+        let joat =0;
+        let count = 0;
+
+        function numberButton(num){
+            if (document.getElementById('display1').innerHTML=='0'||document.getElementById('display2').innerHTML=='0'){
+                document.getElementById('display1').innerHTML = num;
+                document.getElementById('display2').innerHTML = num;
+            }
+            else{
+                document.getElementById('display1').innerHTML += num;
+                document.getElementById('display2').innerHTML += num;
+            }
+        }
+     
+
+        function percentageButton(){
+            curValue = (parseFloat(document.getElementById("display1").innerHTML))/100;
+            document.getElementById('display1').innerHTML = curValue;
+            
+            curValue = (parseFloat(document.getElementById("display2").innerHTML))/100;
+            document.getElementById('display2').innerHTML = curValue;
+        }
+        function dot(){
+            document.getElementById('display1').innerHTML += '.';
+            document.getElementById('display2').innerHTML += '.';
+        }
+        function reset11(){
+            document.getElementById('display1').innerHTML = '0';
+            document.getElementById('display2').innerHTML = '0';
+        }
+        function sqrtButton(){
+            curValue = parseFloat(document.getElementById("display1").innerHTML);
+            curValue = parseFloat(document.getElementById("display2").innerHTML);
+            curValue = Math.sqrt(curValue);
+            document.getElementById('display1').innerHTML = curValue;
+            document.getElementById('display2').innerHTML = curValue;
+
+        }
+        function PieButton(){
+            curValue = parseFloat(document.getElementById("display1").innerHTML);
+            curValue = parseFloat(document.getElementById("display2").innerHTML);
+            curValue = 3.1415926536;
+            document.getElementById('display1').innerHTML = curValue;
+            document.getElementById('display2').innerHTML = curValue;
+        }
+        function SquareButton(){
+            curValue = parseFloat(document.getElementById("display1").innerHTML);
+            curValue = parseFloat(document.getElementById("display2").innerHTML);
+            curValue = curValue*curValue;
+            document.getElementById('display1').innerHTML = curValue;
+            document.getElementById('display2').innerHTML = curValue;
+        }
+        function R0Button(){
+            curValue = parseFloat(document.getElementById("display1").innerHTML);
+            curValue = parseFloat(document.getElementById("display2").innerHTML);
+            curValue = Math.floor(curValue);
+            document.getElementById('display1').innerHTML = curValue;
+            document.getElementById('display2').innerHTML = curValue;
+        }
+        function R2Button(){
+            curValue = parseFloat(document.getElementById("display1").innerHTML);
+            curValue = parseFloat(document.getElementById("display2").innerHTML);
+            curValue = curValue.toFixed(2);
+            document.getElementById('display1').innerHTML = curValue;
+            document.getElementById('display2').innerHTML = curValue;
+        }
+        function changeButton(){
+            curValue = parseFloat(document.getElementById("display1").innerHTML);
+            curValue = parseFloat(document.getElementById("display2").innerHTML);
+            curValue = curValue*(-1);
+            document.getElementById('display1').innerHTML = curValue;
+            document.getElementById('display2').innerHTML = curValue;
+        }
+
+
+
+        function plusButton(){
+            curValue = parseFloat(document.getElementById("display1").innerHTML);
+            curValue = parseFloat(document.getElementById("display2").innerHTML);
+            document.getElementById("display1").innerHTML = 0;
+            document.getElementById("display2").innerHTML = 0;
+            operator ='+';
+            count = 0;
+        }
+        function minusButton(){
+            curValue = parseFloat(document.getElementById("display1").innerHTML);
+            curValue = parseFloat(document.getElementById("display2").innerHTML);
+            document.getElementById("display1").innerHTML = 0;
+            document.getElementById("display2").innerHTML = 0;
+            operator ='-';
+            count = 0;
+        }
+        function multiButton(){
+            curValue = parseFloat(document.getElementById("display1").innerHTML);
+            curValue = parseFloat(document.getElementById("display2").innerHTML);
+            document.getElementById("display1").innerHTML = 0;
+            document.getElementById("display2").innerHTML = 0;
+            operator ='x';
+            count = 0;
+
+        }
+        function divisionButton(){
+            curValue = parseFloat(document.getElementById("display1").innerHTML);
+            curValue = parseFloat(document.getElementById("display2").innerHTML);
+            document.getElementById("display1").innerHTML = 0;
+            document.getElementById("display2").innerHTML = 0;
+            operator ='/';
+            count = 0;
+        }
+        
+
+    
+
+        function equalButton(){
+            if (count == 0){
+                joat = parseFloat(document.getElementById("display1").innerHTML);
+                count = 1;
+            }
+            if(operator =='+'){
+                curValue += joat;
+            }
+            else if(operator=='-'){
+                curValue -= joat;
+            }
+            else if(operator=='x'){
+                curValue *= joat;
+            }
+            else if(operator=='/'){
+                curValue /= joat;
+            }
+            else{
+
+            }
+            document.getElementById('display1').innerHTML = curValue;
+            document.getElementById('display2').innerHTML = curValue;
+        }
+        
+        
+    </script>
+
+    <div class="empty"><p>표시할수 없음.</p></div>
+    
+    <div class="vertical">
+        <table width=360 height=660 border=1>
+            <tr><td colspan="7" class="result" align="right"><span id="display1">0</span></td></tr>
+            <tr>
+                <td><button class="ButtonStyle1"> </button></td>
+                <td><button class="ButtonStyle1"> </button></td>
+                <td><button class="ButtonStyle1"> </button></td>
+                <td><button class="ButtonStyle1"> </button></td>
+            </tr>
+            <tr>
+                <td><button class="ButtonStyle1" onclick="reset11()">CE</button></td>
+                <td><button class="ButtonStyle1" onclick="sqrtButton()">√x</button></td>
+                <td><button class="ButtonStyle1" onclick="percentageButton()">%</button></td> 
+                <td><button class="ButtonStyle3" onclick="divisionButton()">÷</button></td>
+            </tr>
+            <tr>
+                <td><button class="ButtonStyle2" onclick="numberButton(7)">7</button></td>
+                <td><button class="ButtonStyle2" onclick="numberButton(8)">8</button></td>
+                <td><button class="ButtonStyle2" onclick="numberButton(9)">9</button></td>
+                <td><button class="ButtonStyle3" onclick="multiButton()">x</button></td>
+            </tr>
+            <tr>
+                <td><button class="ButtonStyle2" onclick="numberButton(4)">4</button></td>
+                <td><button class="ButtonStyle2" onclick="numberButton(5)">5</button></td>
+                <td><button class="ButtonStyle2" onclick="numberButton(6)">6</button></td>
+                <td><button class="ButtonStyle3" onclick="minusButton()">-</button></td>
+            </tr>
+            <tr>
+                <td><button class="ButtonStyle2" onclick="numberButton(1)">1</button></td>
+                <td><button class="ButtonStyle2 num" onclick="numberButton(2)">2</button></td>
+                <td><button class="ButtonStyle2 num" onclick="numberButton(3)">3</button></td>
+                <td><button class="ButtonStyle3 operater" onclick="plusButton()">+</button></td> <!---->
+            </tr>
+            <tr>
+                <td><button class="ButtonStyle2" onclick="numberButton(0)">0</button></td>
+                <td><button class="ButtonStyle2" onclick="dot()">.</button></td>
+                <td><button class="ButtonStyle2" onclick="changeButton()">+/-</button></td>
+                <td><button class="ButtonStyle3 operater" onclick="equalButton();">=</button></td>
+            </tr>
+            <tr>
+                <td><button class="ButtonStyle1" onclick="PieButton()">π</button></td>
+                <td><button class="ButtonStyle1" onclick="SquareButton()">x²</button></td>
+                <td><button class="ButtonStyle1" onclick="R2Button()">R2</button></td>
+                <td><button class="ButtonStyle1" onclick="R0Button()">R0</button></td>
+            </tr>
+            <tr><td colspan="7" style="border: 3px solid transparent; text-align: right; height: 1px;"><a href="https://www.calculatorsoup.com/calculators/math/basic.php">Get a Widget for this Caicylator</a><p>20253361김도희</p></td></tr>
+        </table>
+    </div>
+
+    <div class="horizontal">
+        <table width="540" height="480" border="1">
+            <tr><td colspan="7" ><span id="display2">0</span></td></tr>
+            <tr>
+                <td><button class="ButtonStyle1"> </button></td>
+                <td><button class="ButtonStyle1"> </button></td>
+                <td><button class="ButtonStyle2" onclick="numberButton(7)">7</button></td>
+                <td><button class="ButtonStyle2" onclick="numberButton(8)">8</button></td>
+                <td><button class="ButtonStyle2" onclick="numberButton(9)">9</button></td>
+                <td><button class="ButtonStyle3" onclick="divisionButton()">÷</button></td>
+                <td><button class="ButtonStyle1" onclick="R2Button()">R2</button></td>
+            </tr>
+            <tr>
+                <td><button class="ButtonStyle1"> </button></td>
+                <td><button class="ButtonStyle1"> </button></td>
+                <td><button class="ButtonStyle2" onclick="numberButton(4)">4</button></td>
+                <td><button class="ButtonStyle2" onclick="numberButton(5)">5</button></td>
+                <td><button class="ButtonStyle2" onclick="numberButton(6)">6</button></td>
+                <td><button class="ButtonStyle3" onclick="multiButton()">x</button></td>
+                <td><button class="ButtonStyle1" onclick="R0Button()">R0</button></td>
+            </tr>
+            <tr>
+                <td><button class="ButtonStyle1" onclick="PieButton()">π</button></td>
+                <td><button class="ButtonStyle1" onclick="SquareButton()">x²</button></td>
+                <td><button class="ButtonStyle2" onclick="numberButton(1)">1</button></td>
+                <td><button class="ButtonStyle2" onclick="numberButton(2)">2</button></td>
+                <td><button class="ButtonStyle2" onclick="numberButton(3)">3</button></td>
+                <td><button class="ButtonStyle3" onclick="minusButton()">-</button></td>
+                <td><button class="ButtonStyle1" onclick="reset11()">CE</button></td>
+            </tr>
+            <tr>
+                <td><button class="ButtonStyle1" onclick="sqrtButton()">√x</button></td>
+                <td><button class="ButtonStyle1" onclick="percentageButton()">%</button></td>
+                <td><button class="ButtonStyle2" onclick="numberButton(0)">0</button></td>
+                <td><button class="ButtonStyle2" onclick="dot()">.</button></td>
+                <td><button class="ButtonStyle2" onclick="changeButton()">+/-</button></td><!---->
+                <td><button class="ButtonStyle3" onclick="plusButton()">+</button></td>
+                <td><button class="ButtonStyle3" onclick="equalButton();">=</button></td>
+            </tr>
+            <tr><td colspan="7" style="border: 3px solid transparent; text-align: right; height: 1px;"><a href="https://www.calculatorsoup.com/calculators/math/basic.php">Get a Widget for this Caicylator</a><p>20253361김도희</p></td></tr>
+            
+        </table>
+        
+    </div>
+
+</body>
+</html>
